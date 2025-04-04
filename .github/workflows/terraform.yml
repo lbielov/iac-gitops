@@ -21,16 +21,16 @@ env:
  AWS_REGION: us-east-2
  EKS_CLUSTER: cd-eks
 
- jobs:
-    terraform:
-      name: "Apply terraform code changes"
-      runs-on: ubuntu-latest
-      defaults:
-        run:
-          shell: brash
-          working-directory: ./terraform
-      
-      steps:
+jobs:
+   terraform:
+     name: "Apply terraform code changes"
+     runs-on: ubuntu-latest
+     defaults:
+       run:
+         shell: bash
+         working-directory: ./terraform
+
+     steps:
        - name: Checkout source code 
          uses: actions/checkout@v4
 
@@ -59,6 +59,7 @@ env:
        - name: Terraform plan status
          if: steps.plan.outcome == 'failure' 
          run: exit 1     
+
 
 
       
